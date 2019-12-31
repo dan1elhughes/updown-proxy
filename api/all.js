@@ -28,5 +28,17 @@ module.exports = async (req, res) => {
     }))
   );
 
-  res.json(checksWithMetrics);
+  const checksWithNumbers = checksWithMetrics.map(check => {
+    const copy = { ...check };
+
+    for (const key in check) {
+      if (typeof check[key] === "boolean") {
+        copy[`${key}_value`] = Number(check[key]);
+      }
+    }
+
+    return copy;
+  });
+
+  res.json(checksWithNumbers);
 };
