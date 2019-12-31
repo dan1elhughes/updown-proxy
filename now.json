@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/**/*.js",
+      "use": "@now/node"
+    }
+  ],
+  "env": {
+    "UPDOWN_API_KEY": "@updown_api_key"
+  },
+  "github": {
+    "silent": true
+  }
+}
