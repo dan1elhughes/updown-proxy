@@ -2,7 +2,7 @@
 
 A [now.sh](https://now.sh) serverless function which decorates the [Updown](https://updown.io) API response with metrics per check.
 
-More specifically, it merges each element in the `/api/checks` response with `/api/checks/:token/metrics` for that token, to add **`apdex`**, **`timings`** and **`requests`**.
+More specifically, it merges each element in the `/api/checks` response with `/api/checks/:token` for that token, to add **`metrics`** field with apdex and timings.
 
 ## Example
 
@@ -74,27 +74,15 @@ More specifically, it merges each element in the `/api/checks` response with `/a
     "valid": true,
     "error": null
   },
-  "apdex": 1,
-  "timings": {
-    "redirect": 0,
-    "namelookup": 94,
-    "connection": 7,
-    "handshake": 29,
-    "response": 232,
-    "total": 363
-  },
-  "requests": {
-    "samples": 141,
-    "failures": 0,
-    "satisfied": 141,
-    "tolerated": 0,
-    "by_response_time": {
-      "under125": 54,
-      "under250": 108,
-      "under500": 117,
-      "under1000": 141,
-      "under2000": 141,
-      "under4000": 141
+  "metrics": {
+    "apdex": 1,
+    "timings": {
+      "redirect": 0,
+      "namelookup": 24,
+      "connection": 3,
+      "handshake": 33,
+      "response": 499,
+      "total": 559
     }
   }
 }

@@ -4,7 +4,7 @@ const assert = require("assert");
 const { UPDOWN_API_KEY } = process.env;
 assert(UPDOWN_API_KEY);
 
-const metricsUrl = token => `https://updown.io/api/checks/${token}/metrics`;
+const metricsUrl = token => `https://updown.io/api/checks/${token}`;
 
 module.exports = async (req, res) => {
   const searchParams = new URLSearchParams([["api-key", UPDOWN_API_KEY]]);
@@ -13,11 +13,7 @@ module.exports = async (req, res) => {
     searchParams
   }).json();
 
-  const oneHourAgo = new Date(
-    new Date().getTime() - 60 * 60 * 1000
-  ).toUTCString();
-
-  searchParams.set("from", oneHourAgo);
+  searchParams.set("metrics", true);
 
   const checksWithMetrics = await Promise.all(
     checks.map(async check => ({
