@@ -13,11 +13,11 @@ module.exports = async (req, res) => {
     searchParams
   }).json();
 
-  const oneDayAgo = new Date(
-    new Date().getTime() - 24 * 60 * 60 * 1000
+  const oneHourAgo = new Date(
+    new Date().getTime() - 60 * 60 * 1000
   ).toUTCString();
 
-  searchParams.set("from", oneDayAgo);
+  searchParams.set("from", oneHourAgo);
 
   const checksWithMetrics = await Promise.all(
     checks.map(async check => ({
